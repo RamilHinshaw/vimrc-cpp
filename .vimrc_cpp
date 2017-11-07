@@ -1,13 +1,28 @@
+"  ____                 _ _   _   _ _           _                    
+" |  _ \ __ _ _ __ ___ (_) | | | | (_)_ __  ___| |__   __ ___      __
+" | |_) / _` | '_ ` _ \| | | | |_| | | '_ \/ __| '_ \ / _` \ \ /\ / /
+" |  _ < (_| | | | | | | | | |  _  | | | | \__ \ | | | (_| |\ V  V / 
+" |_| \_\__,_|_| |_| |_|_|_| |_| |_|_|_| |_|___/_| |_|\__,_| \_/\_/ 
+"
+"
+" -----------------------
+" *Ramil Hinshaw's .vimrc
+"
+" Optimized for WSU College with outdated VIM
+"============================================================================
+
+
+
+"NOTE ***********
 
 "Make sure to do install Vundle!
 "git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-"When you install YouCompleteMe, Make sure to go into ./vim/bundle/YouCompleteMe and run this:
-"./install.py --clang-completer --system-libclang --system-boost
-"This is for the C like family langauges (requires: "sudo pkg_add llvm boost cmake")
+" ***************
 
 
-set nocompatible              " be iMproved, required filetype off                  " required
+"VIM MODE ACTIVATED! :D
+set nocompatible              
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -18,8 +33,9 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tomasr/molokai'
-Plugin 'joshdick/onedark.vim'
-"Plugin 'crusoexia/vim-monokai'
+Plugin 'AlessandroYorba/Despacio'
+"Plugin 'joshdick/onedark.vim'
+Plugin 'crusoexia/vim-monokai'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 "Plugin 'OmniSharp/omnisharp-vim'
@@ -30,7 +46,7 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-repeat'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-surround'
-Plugin 'SirVer/ultisnips'
+"Plugin 'SirVer/ultisnips'
 Plugin 'valloric/youcompleteme'
 "Plugin 'easymotion/vim-easymotion'
 Plugin 'joequery/Stupid-EasyMotion'
@@ -45,30 +61,6 @@ Plugin 'vim-lastplace'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'Konfekt/FastFold'
 "Plugin 'w0rp/ale'
-
-"Python
-"Plugin 'nvie/vim-flake8'
-"Plugin 'tmhedberg/SimpylFold'
-
-""Web Development
-""Plugin 'maksimr/vim-jsbeautify'
-"Plugin 'ap/vim-css-color'
-""lugin 'pangloss/vim-javascript'
-""Plugin 'jaxbot/browserlink.vim'
-"Plugin 'wookiehangover/jshint.vim'
-""Plugin 'ternjs/tern_for_vim', {'do': 'npm install'}
-"Plugin  'JulesWang/css.vim',
-"Plugin 'hail2u/vim-css3-syntax'
-"Plugin 'othree/csscomplete.vim'
-"Plugin 'https://github.com/mxw/vim-jsx'
-""Plugin 'cakebaker/scss-syntax.vim', { 'for': ['scss'] }
-""Plugin 'othree/html5.vim'
-"Plugin 'mattn/emmet-vim'
-"Plugin 'gregsexton/MatchTag'
-"Plugin 'styled-components/stylelint-processor-styled-components'
-"Plugin 'stylelint/stylelint'
-"Plugin 'marciomazza/vim-brogrammer-theme'
-
 
 call vundle#end()            " required
 
@@ -102,18 +94,20 @@ set autowrite		" Automatically save before commands like :next and
 set timeoutlen=200  "Hotkey wait time for combined hotkeys
 set ttimeoutlen=200
 
+"Set mouse for those who need it
+:set mouse=a
+
 " Numbers the lines
-set relativenumber
 set number
+set relativenumber
 
 "set hlsearch
 set foldmethod=marker
 set foldlevel=99
  
 "Asthetics
-syntax enable
-colorscheme onedark
-"colorscheme molokai
+syntax enable 
+colorscheme despacio
 "let g:molokai_original = 1
 "let g:rehash256 = 1
 set background=dark
@@ -161,32 +155,8 @@ let g:syntastic_javascript_checkers = ['jshint', 'jsl', 'eslint']
 let g:syntastic_python_checkers = ['flake8']
 "let g:syntastic_css = ['csslint']
 let g:syntastic_html_checkers = ['jshint', 'tidy']
-
-
- "***********************************************************}}}
-"Python Stuff {{{
-
-"https://realpython.com/blog/python/vim-and-python-a-match-made-in-heaven/
-"let python_highlight_all=1  
-
-"python with virtualenv support
-"py << EOF
-"import os
-"import sys
-"if 'VIRTUAL_ENV' in os.environ:
-"project_base_dir = os.environ['VIRTUAL_ENV']
-"activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-"execfile(activate_this, dict(__file__=activate_this))
-"EOF
-
-"***********************************************************}}}
-
-""Emment
-"let g:user_emmet_install_global = 0
-""Use only in html, css files
-"autocmd FileType html,css EmmetInstall
-"let g:user_emmet_leader_key=','
  
+"------------------------------------------------------------
 "Bindings
 noremap H 0
 noremap L $
@@ -214,16 +184,23 @@ map F <Leader><Leader>f
 
 nnoremap <leader><leader>m :colorscheme molokai <Enter>
 
-"Javascript Stuff
+"Custom Hotkeys
 autocmd FileType javascript,html,css,cpp nnoremap ;; A;<Esc>|	"Adds ';' at end of line in normal mode
 autocmd FileType javascript,html,cpp inoremap ;; <Esc>A;<Esc>|	"Adds ';' at end of line in insert mode
 autocmd FileType javascript,html,cpp inoremap ;. <Esc>A.|	"Adds '.' at end of line in insert mode (and goes back insert mode)
-autocmd FileType javascript,html,cpp inoremap ;i <Esc>A|	"Goes to end of line insert mode (and goes back into insert mode)
+autocmd FileType javascript,html,cpp inoremap ;i <Esc>li|	"Goes to end of line insert mode (and goes back into insert mode)
 autocmd FileType html,cpp inoremap ;o <CR><Esc>O |	"When cursor in middle of horizontal HTML Block, breaks block into vertal and goes back to middle
+
+"Copy & Paste
+:inoremap <C-v> <ESC>"+pa
+:vnoremap <C-c> "+y
+:vnoremap <C-d> "+d
 
 "Windows
 nnoremap <S-w> <C-w>
 
+
+"ONLY ON VIM 8.0
 "************* Ale Settings ***************************
 "Dont check while typing, check when on save
 "let g:ale_lint_on_save = 1
@@ -245,3 +222,4 @@ nnoremap <S-w> <C-w>
 "autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 "autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
 "
+
